@@ -1,13 +1,16 @@
 window.addEventListener("DOMContentLoaded", function () {
   const grid = document.querySelector(".grid");
+  const doodler = document.createElement("div");
+
   let doodlerBottomSpace = 150;
   let doodlerLeftSpace = 50;
   let platformCount = 5;
   let platforms = [];
   let isGameOver = false;
+  let jumpTimerId;
+  let fallTimerId;
 
   function createDoodler() {
-    const doodler = document.createElement("div");
     grid.append(doodler);
     doodler.classList.add("doodler");
     doodler.style.bottom = doodlerBottomSpace + "px";
@@ -42,10 +45,42 @@ window.addEventListener("DOMContentLoaded", function () {
     if (doodlerBottomSpace > 200) {
       platforms.forEach((platform) => {
         let visual = platform.visual;
-        platform.bottom -= 4;
+        platform.bottom -= 5;
         visual.style.bottom = platform.bottom + "px";
       });
     }
+  }
+
+  function jump() {
+    clearInterval(fallTimerId);
+
+    jumpTimerId = setInterval(() => {
+      doodlerBottomSpace += 5;
+      doodler.style.bottom = doodlerBottomSpace + "px";
+
+      if (doodlerBottomSpace > 350) {
+        fall();
+      }
+    }, 30);
+  }
+
+  function fall() {
+    clearInterval(jumpTimerId);
+
+    fallTimerId = setInterval(() => {
+      doodlerBottomSpace -= 5;
+      doodler.style.bottom = doodlerBottomSpace + "px";
+
+      if (doodlerBottomSpace <= 0) {
+        gameOver();
+      }
+    }, 30);
+  }
+
+  function gameOver() {
+    isGameOver = true;
+    clearInterval(jumpTimerId);
+    clearInterval(fallTimerId);
   }
 
   function start() {
