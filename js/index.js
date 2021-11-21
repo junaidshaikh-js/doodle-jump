@@ -4,6 +4,7 @@ window.addEventListener("DOMContentLoaded", function () {
   let doodlerLeftSpace = 50;
   let platformCount = 5;
   let platforms = [];
+  let isGameOver = false;
 
   function createDoodler() {
     const doodler = document.createElement("div");
@@ -37,9 +38,23 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  function movePlatforms() {
+    if (doodlerBottomSpace > 200) {
+      platforms.forEach((platform) => {
+        let visual = platform.visual;
+        platform.bottom -= 4;
+        visual.style.bottom = platform.bottom + "px";
+      });
+    }
+  }
+
   function start() {
-    createPlatform();
-    createDoodler();
+    if (!isGameOver) {
+      createPlatform();
+      createDoodler();
+      setInterval(movePlatforms, 30);
+      jump();
+    }
   }
 
   // attach to the button
