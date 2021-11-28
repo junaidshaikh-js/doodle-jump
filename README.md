@@ -5,7 +5,7 @@ The doodle jump game clone, made with Vanilla JavaScript.
 ## Table of contents
 
 - [Overview](#overview)
-  - [Screenshot](#screenshot)
+  - [Preview](#screenshot)
   - [Links](#links)
 - [Author](#author)
 
