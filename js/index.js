@@ -108,12 +108,16 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   function gameOver() {
+    isGameOver = true;
+
+    while (grid.firstChild) {
+      grid.firstChild.remove();
+    }
+
     clearInterval(jumpTimerId);
     clearInterval(fallTimerId);
     clearInterval(moveLeftTimerId);
     clearInterval(moveRightTimerId);
-    console.log("game over");
-    isGameOver = true;
   }
 
   function control(e) {
