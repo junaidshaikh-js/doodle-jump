@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", function () {
+  const startBtn = document.querySelector(".start-btn");
   const grid = document.querySelector(".grid");
   const doodler = document.createElement("div");
 
@@ -55,7 +56,6 @@ window.addEventListener("DOMContentLoaded", function () {
 
         // remove flatforms
         if (platform.bottom < 10) {
-          console.log(platforms);
           let firstPlatform = platforms.shift().visual;
           firstPlatform.classList.remove("platform");
           firstPlatform.remove();
@@ -171,6 +171,8 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   function start() {
+    startBtn.style.display = "none";
+
     if (!isGameOver) {
       createPlatform();
       createDoodler();
@@ -181,5 +183,5 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   // attach to the button
-  start();
+  startBtn.addEventListener("click", start);
 });
