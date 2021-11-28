@@ -51,6 +51,17 @@ window.addEventListener("DOMContentLoaded", function () {
         let visual = platform.visual;
         platform.bottom -= 5;
         visual.style.bottom = platform.bottom + "px";
+
+        if (platform.bottom < 10) {
+          console.log(platforms);
+          let firstPlatform = platforms.shift().visual;
+          firstPlatform.classList.remove("platform");
+          firstPlatform.remove();
+
+          let newPlatform = new Platform(600);
+
+          platforms.push(newPlatform);
+        }
       });
     }
   }
