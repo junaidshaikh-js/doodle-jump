@@ -71,6 +71,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
   function jump() {
     clearInterval(fallTimerId);
+    clearInterval(moveLeftTimerId);
+    clearInterval(moveRightTimerId);
     isJumping = true;
 
     jumpTimerId = setInterval(() => {
