@@ -119,14 +119,10 @@ window.addEventListener("DOMContentLoaded", function () {
     clearInterval(moveRightTimerId);
 
     moveLeftTimerId = setInterval(() => {
-      if (doodlerBottomSpace <= 0) {
-        gameOver();
-      }
-
-      doodlerLeftSpace -= 5;
-      doodler.style.left = doodlerLeftSpace + "px";
-
-      if (doodlerLeftSpace <= 0) {
+      if (doodlerLeftSpace >= 0) {
+        doodlerLeftSpace -= 5;
+        doodler.style.left = doodlerLeftSpace + "px";
+      } else {
         moveRight();
       }
     }, 30);
@@ -136,20 +132,21 @@ window.addEventListener("DOMContentLoaded", function () {
     clearInterval(moveLeftTimerId);
 
     moveRightTimerId = setInterval(() => {
-      if (doodlerBottomSpace <= 0) {
-        gameOver();
-      }
-      doodlerLeftSpace += 5;
-      doodler.style.left = doodlerLeftSpace + "px";
-
-      if (doodlerLeftSpace > 340) {
+      if (doodlerLeftSpace + 60 < 400) {
+        doodlerLeftSpace += 5;
+        doodler.style.left = doodlerLeftSpace + "px";
+      } else {
         moveLeft();
       }
     }, 30);
   }
 
   function moveUp() {
-    // move up
+    clearInterval(moveLeftTimerId);
+    clearInterval(moveRightTimerId);
+
+    doodlerBottomSpace += 40;
+    doodler.style.bottom = doodlerBottomSpace + "px";
   }
 
   function start() {
