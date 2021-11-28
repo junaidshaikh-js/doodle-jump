@@ -13,6 +13,7 @@ window.addEventListener("DOMContentLoaded", function () {
   let fallTimerId;
   let moveLeftTimerId;
   let moveRightTimerId;
+  let score = 0;
 
   function createDoodler() {
     grid.append(doodler);
@@ -52,11 +53,13 @@ window.addEventListener("DOMContentLoaded", function () {
         platform.bottom -= 5;
         visual.style.bottom = platform.bottom + "px";
 
+        // remove flatforms
         if (platform.bottom < 10) {
           console.log(platforms);
           let firstPlatform = platforms.shift().visual;
           firstPlatform.classList.remove("platform");
           firstPlatform.remove();
+          score++;
 
           let newPlatform = new Platform(600);
 
@@ -114,6 +117,7 @@ window.addEventListener("DOMContentLoaded", function () {
       grid.firstChild.remove();
     }
 
+    grid.innerHTML = `Your Score is ${score}`;
     clearInterval(jumpTimerId);
     clearInterval(fallTimerId);
     clearInterval(moveLeftTimerId);
