@@ -1,3 +1,9 @@
+.game {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
 .grid {
   width: 400px;
   height: 600px;
@@ -25,5 +31,17 @@
   background-color: green;
   background: url("../img/platform.png");
   position: absolute;
+}
+
+.start-btn {
+  position: relative;
+  bottom: 200px;
+  padding: 10px 20px;
+  font-weight: bold;
+  background-color: lightgreen;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  outline: none;
 }
 /*# sourceMappingURL=index.css.map */
